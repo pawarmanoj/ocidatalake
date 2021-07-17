@@ -202,5 +202,75 @@ variable "etlssh_pub_key" {
   description = "provide value of ETL VM host SSH Public Key"
 }
 
+## Big Data
 
+variable "bds_instance_cluster_admin_password" {
+  default = "V2VsY29tZTE="
+}
+
+variable "bds_instance_cluster_public_key" {
+  default = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDpUa4zUZKyU3AkW9yoJTBDO550wpWZOXdHswfRq75gbJ2ZYlMtifvwiO3qUL/RIZSC6e1wA5OL2LQ97UaHrLLPXgjvKGVIDRHqPkzTOayjJ4ZA7NPNhcu6f/OxhKkCYF3TAQObhMJmUSMrWSUeufaRIujDz1HHqazxOgFk09fj4i2dcGnfPcm32t8a9MzlsHSmgexYCUwxGisuuWTsnMgxbqsj6DaY51l+SEPi5tf10iFmUWqziF0eKDDQ/jHkwLJ8wgBJef9FSOmwJReHcBY+NviwFTatGj7Cwtnks6CVomsFD+rAMJ9uzM8SCv5agYunx07hnEXbR9r/TXqgXGfN bdsclusterkey@oracleoci.com"
+}
+
+variable "bds_instance_cluster_version" {
+  default = "ODH1"
+}
+
+variable "bds_instance_defined_tags_value" {
+  default = "value"
+}
+
+variable "bds_instance_display_name" {
+  default = "displayName2"
+}
+
+variable "bds_instance_freeform_tags" {
+  default = {
+    "bar-key" = "value"
+  }
+}
+
+variable "bds_instance_is_high_availability" {
+  default = false
+}
+
+variable "bds_instance_is_secure" {
+  default = false
+}
+
+variable "bds_instance_network_config_cidr_block" {
+  default = "111.112.0.0/16"
+}
+
+variable "bds_instance_network_config_is_nat_gateway_required" {
+  default = false
+}
+
+variable "bds_instance_nodes_block_volume_size_in_gbs" {
+  default = 150
+}
+
+variable "bds_instance_worker_nodes_block_volume_size_in_gbs" {
+  default = 150
+}
+
+variable "bds_instance_nodes_shape" {
+  default = "VM.Standard2.4"
+}
+
+variable "bds_instance_worker_node_shape" {
+  default = "VM.Standard2.1"
+}
+
+variable "bds_instance_state" {
+  default = "ACTIVE"
+}
+
+variable "tag_namespace_description" {
+  default = "Just a test"
+}
+
+variable "tag_namespace_name" {
+  default = "testexamples-tag-namespace"
+}
 
