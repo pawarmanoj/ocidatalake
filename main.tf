@@ -390,7 +390,7 @@ resource "oci_core_route_table" "route_table_dev_app_private" {
  } 
 
  ## Bastion VM + ETL VM
-
+/*
 resource oci_core_instance BastionHost {
   availability_domain = var.availability_domain
   compartment_id = var.compartment_network_ocid
@@ -427,13 +427,202 @@ resource oci_core_instance BastionHost {
   metadata = {
     "ssh_authorized_keys" = var.etlssh_pub_key
   }
-  shape = "VM.Standard2.2"
+  shape = "VM.Standard2.1"
   source_details {
     source_id   = var.etl_image_id
     source_type = "image"
   }
 }
 
+*/
+
+resource oci_core_instance export_Bastion-Host {
+  agent_config {
+    are_all_plugins_disabled = "false"
+    is_management_disabled   = "false"
+    is_monitoring_disabled   = "false"
+    plugins_config {
+      desired_state = "DISABLED"
+      name          = "Vulnerability Scanning"
+    }
+    plugins_config {
+      desired_state = "ENABLED"
+      name          = "OS Management Service Agent"
+    }
+    plugins_config {
+      desired_state = "ENABLED"
+      name          = "Custom Logs Monitoring"
+    }
+    plugins_config {
+      desired_state = "ENABLED"
+      name          = "Compute Instance Run Command"
+    }
+    plugins_config {
+      desired_state = "ENABLED"
+      name          = "Compute Instance Monitoring"
+    }
+    plugins_config {
+      desired_state = "DISABLED"
+      name          = "Block Volume Management"
+    }
+    plugins_config {
+      desired_state = "DISABLED"
+      name          = "Bastion"
+    }
+  }
+  availability_config {
+    #is_live_migration_preferred = <<Optional value not found in discovery>>
+    recovery_action = "RESTORE_INSTANCE"
+  }
+  availability_domain = var.availability_domain
+  #capacity_reservation_id = <<Optional value not found in discovery>>
+  compartment_id = var.compartment_network_ocid
+  create_vnic_details {
+    #assign_private_dns_record = <<Optional value not found in discovery>>
+    assign_public_ip = "true"
+    display_name = "Bastion-Host"
+    freeform_tags = {
+    }
+    hostname_label = "bastion-host"
+    nsg_ids = [
+    ]
+    #private_ip             = "10.10.1.21"
+    skip_source_dest_check = "false"
+    subnet_id              = oci_core_subnet.subnet_dev_public.id
+    #vlan_id = <<Optional value not found in discovery>>
+  }
+  #dedicated_vm_host_id = <<Optional value not found in discovery>>
+  display_name = "Bastion-Host"
+  extended_metadata = {
+  }
+  fault_domain = "FAULT-DOMAIN-3"
+  freeform_tags = {
+  }
+  instance_options {
+    are_legacy_imds_endpoints_disabled = "false"
+  }
+  #ipxe_script = <<Optional value not found in discovery>>
+  #is_pv_encryption_in_transit_enabled = <<Optional value not found in discovery>>
+  launch_options {
+    boot_volume_type                    = "PARAVIRTUALIZED"
+    firmware                            = "UEFI_64"
+    is_consistent_volume_naming_enabled = "true"
+    is_pv_encryption_in_transit_enabled = "false"
+    network_type                        = "PARAVIRTUALIZED"
+    remote_data_volume_type             = "PARAVIRTUALIZED"
+  }
+  metadata = {
+    "ssh_authorized_keys" = var.bastion_ssh_pub_key
+  }
+  #preserve_boot_volume = <<Optional value not found in discovery>>
+  shape = "VM.Standard2.1"
+  shape_config {
+    baseline_ocpu_utilization = ""
+    memory_in_gbs             = "15"
+    ocpus                     = "1"
+  }
+  source_details {
+    #boot_volume_size_in_gbs = <<Optional value not found in discovery>>
+    #kms_key_id = <<Optional value not found in discovery>>
+    source_id   = var.bastion_image_id
+    source_type = "image"
+  }
+  state = "RUNNING"
+}
+
+resource oci_core_instance export_ETLPipelineVM {
+  agent_config {
+    are_all_plugins_disabled = "false"
+    is_management_disabled   = "false"
+    is_monitoring_disabled   = "false"
+    plugins_config {
+      desired_state = "DISABLED"
+      name          = "Vulnerability Scanning"
+    }
+    plugins_config {
+      desired_state = "ENABLED"
+      name          = "OS Management Service Agent"
+    }
+    plugins_config {
+      desired_state = "ENABLED"
+      name          = "Custom Logs Monitoring"
+    }
+    plugins_config {
+      desired_state = "ENABLED"
+      name          = "Compute Instance Run Command"
+    }
+    plugins_config {
+      desired_state = "ENABLED"
+      name          = "Compute Instance Monitoring"
+    }
+    plugins_config {
+      desired_state = "DISABLED"
+      name          = "Block Volume Management"
+    }
+    plugins_config {
+      desired_state = "DISABLED"
+      name          = "Bastion"
+    }
+  }
+  availability_config {
+    #is_live_migration_preferred = <<Optional value not found in discovery>>
+    recovery_action = "RESTORE_INSTANCE"
+  }
+  availability_domain = var.availability_domain
+  #capacity_reservation_id = <<Optional value not found in discovery>>
+  compartment_id = var.compartment_network_ocid
+  create_vnic_details {
+    #assign_private_dns_record = <<Optional value not found in discovery>>
+    assign_public_ip = "false"
+    display_name = "ETLPipelineVM"
+    freeform_tags = {
+    }
+    hostname_label = "etlpipelinevm"
+    nsg_ids = [
+    ]
+    #private_ip             = "10.10.2.225"
+    skip_source_dest_check = "false"
+    subnet_id              = oci_core_subnet.subnet_dev_DB_private.id
+    #vlan_id = <<Optional value not found in discovery>>
+  }
+  #dedicated_vm_host_id = <<Optional value not found in discovery>>
+  display_name = "ETLPipelineVM"
+  extended_metadata = {
+  }
+  fault_domain = "FAULT-DOMAIN-2"
+  freeform_tags = {
+  }
+  instance_options {
+    are_legacy_imds_endpoints_disabled = "false"
+  }
+  #ipxe_script = <<Optional value not found in discovery>>
+  #is_pv_encryption_in_transit_enabled = <<Optional value not found in discovery>>
+  launch_options {
+    boot_volume_type                    = "PARAVIRTUALIZED"
+    firmware                            = "UEFI_64"
+    is_consistent_volume_naming_enabled = "true"
+    is_pv_encryption_in_transit_enabled = "false"
+    network_type                        = "PARAVIRTUALIZED"
+    remote_data_volume_type             = "PARAVIRTUALIZED"
+  }
+  metadata = {
+    "ssh_authorized_keys" = var.etlssh_pub_key
+  }
+  #preserve_boot_volume = <<Optional value not found in discovery>>
+  shape = "VM.Standard2.2"
+  shape_config {
+    baseline_ocpu_utilization = ""
+    memory_in_gbs             = "30"
+    ocpus                     = "2"
+  }
+  source_details {
+    #boot_volume_size_in_gbs = <<Optional value not found in discovery>>
+    #kms_key_id = <<Optional value not found in discovery>>
+    source_id   = var.etl_image_id
+    source_type = "image"
+  }
+  state = "RUNNING"
+}
 
 
 
