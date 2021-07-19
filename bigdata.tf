@@ -1,21 +1,3 @@
-resource "oci_core_vcn" "vcn_bds" {
-  cidr_block     = "111.111.0.0/16"
-  compartment_id = var.compartment_network_ocid
-  display_name   = "BDS_VCN"
-  dns_label      = "bdsvcn"
-}
-
-resource "oci_core_subnet" "regional_subnet_bds" {
-  cidr_block        = "111.111.0.0/24"
-  display_name      = "regionalSubnetBds"
-  dns_label         = "regionalbds"
-  compartment_id    = var.compartment_network_ocid
-  vcn_id            = oci_core_vcn.vcn_bds.id
-  security_list_ids = [oci_core_vcn.vcn_bds.default_security_list_id]
-  route_table_id    = oci_core_vcn.vcn_bds.default_route_table_id
-  dhcp_options_id   = oci_core_vcn.vcn_bds.default_dhcp_options_id
-}
-
 resource "oci_bds_bds_instance" "datalake_bds_instance" {
   #Required
   cluster_admin_password = var.bds_instance_cluster_admin_password
@@ -29,8 +11,7 @@ resource "oci_bds_bds_instance" "datalake_bds_instance" {
   master_node {
     #Required
     shape = var.bds_instance_nodes_shape
-
-    subnet_id                = oci_core_subnet.regional_subnet_bds.id
+    subnet_id                = oci_core_subnet.subnet_dev_DB_private.id
     block_volume_size_in_gbs = var.bds_instance_nodes_block_volume_size_in_gbs
     number_of_nodes          = 1
   }
@@ -39,7 +20,7 @@ resource "oci_bds_bds_instance" "datalake_bds_instance" {
     #Required
     shape = var.bds_instance_nodes_shape
 
-    subnet_id                = oci_core_subnet.regional_subnet_bds.id
+    subnet_id                = oci_core_subnet.subnet_dev_DB_private.id
     block_volume_size_in_gbs = var.bds_instance_nodes_block_volume_size_in_gbs
     number_of_nodes          = 1
   }
@@ -47,10 +28,9 @@ resource "oci_bds_bds_instance" "datalake_bds_instance" {
   worker_node {
     #Required
     shape = var.bds_instance_worker_node_shape
-
-    subnet_id                = oci_core_subnet.regional_subnet_bds.id
+    subnet_id                = oci_core_subnet.subnet_dev_DB_private.id
     block_volume_size_in_gbs = var.bds_instance_worker_nodes_block_volume_size_in_gbs
-    number_of_nodes          = 4
+    number_of_nodes          = 3
   }
 
   #   cloud_sql_details {

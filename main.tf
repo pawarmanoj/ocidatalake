@@ -1,4 +1,4 @@
-# Main File #
+# Main File : DataLake VCN + Bastion Service + Oracle Analytics CLoud (OAC) + OAC Private Channel Acces (PAC) #
 
 locals {
     Project_vcn_id      = oci_core_vcn.vcn.id
@@ -276,6 +276,7 @@ resource "oci_core_route_table" "route_table_dev_db_private" {
    vcn_id              = local.Project_vcn_id
    display_name        = join("_",[ var.Resource_suffix_dev,"DB_Private_Subnet"])
    cidr_block          = var.subnet_dev_pvt_db_cidr
+   prohibit_public_ip_on_vnic = true
    route_table_id      = oci_core_route_table.route_table_dev_db_private.id
    security_list_ids   =  ["${oci_core_security_list.security_list_dev_db_private.id}"]
    dns_label 		   =  join("",[ var.Resource_suffix_dev,"DBPvtSubnet"])
@@ -384,6 +385,7 @@ resource "oci_core_route_table" "route_table_dev_app_private" {
    vcn_id              = local.Project_vcn_id
    display_name        = join("_",[ var.Resource_suffix_dev,"APP_Private_Subnet"])
    cidr_block          = var.subnet_dev_pvt_app_cidr
+   prohibit_public_ip_on_vnic = true
    route_table_id      = oci_core_route_table.route_table_dev_app_private.id
    security_list_ids   =  ["${oci_core_security_list.security_list_app_private.id}"]
    dns_label 		   =  join("",[ var.Resource_suffix_dev,"APPPvtSubnet"])
@@ -434,7 +436,7 @@ resource oci_core_instance BastionHost {
   }
 }
 
-*/
+##### Different Config Generated via ORM #####
 
 resource oci_core_instance export_Bastion-Host {
   agent_config {
@@ -625,13 +627,69 @@ resource oci_core_instance export_ETLPipelineVM {
 }
 
 
+*/
 
- ##Database 
+## Bastion Service for Datalake for App + DB Private Subnets ##
+
+## DB 
+resource "oci_bastion_bastion" "DB_datalake_bastion" {
+  #Required
+  bastion_type                   = "STANDARD"
+  compartment_id                 = var.compartment_network_ocid
+  target_subnet_id               = oci_core_subnet.subnet_dev_DB_private.id
+
+  #Optional
+  client_cidr_block_allow_list = var.bastion_client_cidr_block_allow_list
+  name                         = var.bastion_name
+  max_session_ttl_in_seconds   = var.bastion_max_session_ttl_in_seconds
+}
+
+data "oci_bastion_bastions" "DB_datalake_bastion" {
+  #Required
+  compartment_id = var.compartment_network_ocid
+
+  #Optional
+  bastion_id              = oci_bastion_bastion.DB_datalake_bastion.id
+  bastion_lifecycle_state = var.bastion_bastion_lifecycle_state
+  name                    = var.bastion_name
+}
+
+data "oci_core_services" "DB_datalake_bastion_services" {
+}
+
+#APP
+resource "oci_bastion_bastion" "APP_datalake_bastion" {
+  #Required
+  bastion_type                   = "STANDARD"
+  compartment_id                 = var.compartment_network_ocid
+  target_subnet_id               = oci_core_subnet.subnet_dev_APP_private.id
+
+  #Optional
+  client_cidr_block_allow_list = var.bastion_client_cidr_block_allow_list
+  name                         = var.App_bastion_name
+  max_session_ttl_in_seconds   = var.bastion_max_session_ttl_in_seconds
+}
+
+data "oci_bastion_bastions" "APP_datalake_bastion" {
+  #Required
+  compartment_id = var.compartment_network_ocid
+
+  #Optional
+  bastion_id              = oci_bastion_bastion.APP_datalake_bastion.id
+  bastion_lifecycle_state = var.bastion_bastion_lifecycle_state
+  name                    = var.App_bastion_name
+}
+
+data "oci_core_services" "APP_datalake_bastion_services" {
+}
+
+
+ ## Oracle Database VMDB system based on LVM Storage
 
  resource "oci_database_db_system" "dev_db_system" {
      #Required
      availability_domain = var.availability_domain
-     compartment_id = var.compartment_nonprod_ocid
+     compartment_id = var.compartment_network_ocid
      db_home {
          #Required
          database {
@@ -661,7 +719,7 @@ resource oci_core_instance export_ETLPipelineVM {
 	 display_name=join("_",[var.Resource_suffix_dev, var.Resource_main,"DB"])	
 	 domain = local.Private_Subnet_Dns			# domain should be same as subnet
 	 node_count = var.database_nodecount
- } 
+ }
  
 
  ## OAC
@@ -673,7 +731,7 @@ resource oci_core_instance export_ETLPipelineVM {
          capacity_type = var.oac_capacity_type
          capacity_value = var.oac_capacity_value
      }
-     compartment_id = var.compartment_nonprod_ocid
+     compartment_id = var.compartment_network_ocid
      feature_set = var.oac_feature_set
      license_type = var.oac_license_type		
      name = join("",[var.Resource_suffix_dev, "OAC1"])

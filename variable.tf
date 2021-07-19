@@ -30,11 +30,6 @@ variable "availability_domain" {
 
 ## Tenancy Compartments
 
-variable "compartment_nonprod_ocid" {
-  type        = string
-  description = "provide value of compartment id for nonProduction"
-}
-
 variable "compartment_network_ocid" {
   type        = string
   description = "provide value of compartment id for preProduction"
@@ -273,4 +268,124 @@ variable "tag_namespace_description" {
 variable "tag_namespace_name" {
   default = "testexamples-tag-namespace"
 }
+
+## Bastion Service 
+variable "bastion_bastion_lifecycle_state" {
+  default = "ACTIVE"
+}
+
+variable "bastion_client_cidr_block_allow_list" {
+  default = ["0.0.0.0/0"]
+}
+
+variable "bastion_name" {
+  default = "DataLakeBastionDB"
+}
+
+variable "App_bastion_name" {
+  default = "DataLakeBastionAPP"
+}
+
+variable "bastion_max_session_ttl_in_seconds" {
+  default = 1800
+}
+
+## Autonomous Datawarehouse + APEX
+
+variable "autonomous_database_backup_display_name" {
+  default = "Monthly Backup"
+}
+
+variable "autonomous_database_db_workload" {
+  default = "OLTP"
+}
+
+variable "autonomous_data_warehouse_db_workload" {
+  default = "DW"
+}
+
+variable "autonomous_database_defined_tags_value" {
+  default = "value"
+}
+
+variable "autonomous_database_freeform_tags" {
+  default = {
+    "Department" = "Finance"
+  }
+}
+
+variable "autonomous_database_license_model" {
+  default = "LICENSE_INCLUDED"
+}
+
+variable "autonomous_database_is_dedicated" {
+  default = false
+}
+
+## GoldenGate ##
+variable "deployment_cpu_core_count" {
+  	default = 1
+}
+
+variable "deployment_defined_tags_value" {
+  	default = "value"
+}
+
+variable "deployment_deployment_type" {
+  	default = "OGG"
+}
+
+variable "deployment_description" {
+  	default = "description"
+}
+
+variable "deployment_display_name" {
+  	default = "GoldenGate_DL"
+}
+
+variable "deployment_fqdn" {
+  	default = "fqdn.ggs.com"
+}
+
+variable "deployment_freeform_tags" {
+  	default = { "bar-key" = "value" }
+}
+
+variable "deployment_is_auto_scaling_enabled" {
+  	default = false
+}
+
+variable "deployment_is_public" {
+  	default = false
+}
+
+variable "deployment_license_model" {
+  	default = "LICENSE_INCLUDED"
+}
+
+variable "deployment_ogg_data_admin_password" {
+  	default = "BEstrO0ng_#11"
+}
+
+variable "deployment_ogg_data_admin_username" {
+  default = "ggadmin"
+}
+
+variable "deployment_ogg_data_deployment_name" {
+  default = "deployment"
+}
+
+variable "deployment_ogg_data_certificate" {
+  	default = "certificate"
+}
+
+variable "deployment_ogg_data_key" {
+  	default = "key"
+}
+
+variable "deployment_state" {
+  	default = "ACTIVE"
+}
+
+variable defined_tag_namespace_name { default = "" }
 

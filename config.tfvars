@@ -3,15 +3,15 @@
 #### prefix - customer name without space #### Suffix - Environmnet type for e.g Dev, Test, Prod,PreProd, this will be used in all Resource Names.
 Resource_prefix	= "Acme"  
 Resource_suffix_dev	= "Dev"			# Suffix for Environment-1/Non Prod
-Resource_main	= "Datalake"		# Using a Display name for e.g. Acme_Datalake_Dev
+Resource_main	= "Dtlk"		# Using a Display name for e.g. Acme_Datalake_Dev
 
 ## Providers Variables
-region           = "ap-sydney-1"
-availability_domain = "pSSn:AP-SYDNEY-1-AD-1"
+region           = "us-ashburn-1"
+availability_domain = "pSSn:US-ASHBURN-AD-1"
 
 ## Compartment Variables
 
-compartment_nonprod_ocid = "ocid1.compartment.oc1..aaaaaaaaxbfvndp2kg4zq64k4di7iyhstb2hg7yiwjrksexljoz4p5pti7sq"
+#compartment_nonprod_ocid = "ocid1.compartment.oc1..aaaaaaaaxbfvndp2kg4zq64k4di7iyhstb2hg7yiwjrksexljoz4p5pti7sq"
 compartment_network_ocid ="ocid1.compartment.oc1..aaaaaaaaxbfvndp2kg4zq64k4di7iyhstb2hg7yiwjrksexljoz4p5pti7sq"
 
 ## VCN
@@ -54,7 +54,6 @@ oac_idcs_token = "eyJ4NXQjUzI1NiI6IjJ5NERKRU1LTWk5V2JoOFF2VFV1cGgtdUIzNF81eDcweX
 #PAC
 
 oac_pac_domain_suffix="oraclevcn.com"
-catalog_private_endpoint_dns_zones="datalake.oraclevcn.com"
 
 ## Bastion
 
