@@ -147,3 +147,32 @@ resource oci_objectstorage_bucket export_RawData_Piper {
   versioning            = "Disabled"
 }
 
+resource oci_objectstorage_bucket export_dataflow-logs  {
+  access_type    = "NoPublicAccess"
+  compartment_id = var.compartment_network_ocid
+  freeform_tags = {
+  }
+  #kms_key_id = <<Optional value not found in discovery>>
+  metadata = {
+  }
+  name                  = "dataflow-logs"
+  namespace             = data.oci_objectstorage_namespace.export_namespace.namespace
+  object_events_enabled = "false"
+  storage_tier          = "Standard"
+  versioning            = "Disabled"
+}
+
+resource oci_objectstorage_bucket export_dataflow-warehouse  {
+  access_type    = "NoPublicAccess"
+  compartment_id = var.compartment_network_ocid
+  freeform_tags = {
+  }
+  #kms_key_id = <<Optional value not found in discovery>>
+  metadata = {
+  }
+  name                  = "dataflow-warehouse"
+  namespace             = data.oci_objectstorage_namespace.export_namespace.namespace
+  object_events_enabled = "false"
+  storage_tier          = "Standard"
+  versioning            = "Disabled"
+}
