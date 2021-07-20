@@ -11,6 +11,9 @@ tenancy=ocid1.tenancy.oc1..aaaaaaaa2txfa\
 compartment=ocid1.compartment.oc1..aaaa5pti7sq\
 region=us-ashburn-1
 
+# Clone the OCI Datalake Repo
+$ git clone https://github.com/shadabshaukat/ocidatalake.git && cd ocidatalake
+
 # Initialize Terraform for OCI and Random Provider
 $ terraform init
 
