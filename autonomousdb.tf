@@ -29,9 +29,10 @@ resource "oci_database_autonomous_database" "autonomous_data_warehouse" {
 //If a db version is passed, it must be valid
 //db_version              = data.oci_database_autonomous_db_versions.test_autonomous_dw_versions.autonomous_db_versions[0].version
   db_workload             = var.autonomous_data_warehouse_db_workload
-  display_name            = "example_autonomous_data_warehouse"
+  display_name            = "datalake_autonomous_dwh"
   freeform_tags           = var.autonomous_database_freeform_tags
   is_auto_scaling_enabled = "false"
+  whitelisted_ips         = [var.autonomous_database_whitelistip]
   license_model           = var.autonomous_database_license_model
 }
 
