@@ -162,6 +162,19 @@ resource oci_objectstorage_bucket export_dataflow-logs  {
   versioning            = "Disabled"
 }
 
+
+resource "oci_objectstorage_object" "testpython" {
+  namespace           = data.oci_objectstorage_namespace.export_namespace.namespace
+  bucket              = oci_objectstorage_bucket.export_dataflow-logs.name
+  object              = "testfile.py"
+  content_language    = "en-US"
+  content_type        = "text/ascii"
+  content             = file("testfile.py")
+  content_disposition = "attachment; filename=\"testfile.py\""
+  storage_tier        = "InfrequentAccess"
+}
+
+
 resource oci_objectstorage_bucket export_dataflow-warehouse  {
   access_type    = "NoPublicAccess"
   compartment_id = var.compartment_network_ocid

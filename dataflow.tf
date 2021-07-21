@@ -4,7 +4,7 @@ resource "oci_dataflow_application" "tf_application" {
   display_name   = var.application_display_name
   driver_shape   = var.application_driver_shape
   executor_shape = var.application_executor_shape
-  file_uri       = join("oci://dataflow-logs@",[data.oci_objectstorage_namespace.export_namespace.namespace, "/testfile"])
+  file_uri       = "oci://dataflow-logs@${data.oci_objectstorage_namespace.export_namespace.namespace}/testfile.py"
   language       = var.application_language
   num_executors  = var.application_num_executors
   spark_version  = var.application_spark_version

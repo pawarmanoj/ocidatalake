@@ -444,7 +444,7 @@ variable allow_listed_http_vcn {
 
 
 variable "application_display_name" {
-  default = "tf_app"
+  default = "Datalake_Example_App"
 }
 
 variable "application_driver_shape" {
