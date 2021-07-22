@@ -11,7 +11,6 @@ availability_domain = "pSSn:US-ASHBURN-AD-1"
 
 ## Compartment Variables
 
-#compartment_nonprod_ocid = "ocid1.compartment.oc1..aaaaaaaaxbfvndp2kg4zq64k4di7iyhstb2hg7yiwjrksexljoz4p5pti7sq"
 compartment_network_ocid ="ocid1.compartment.oc1..aaaaaaaaxbfvndp2kg4zq64k4di7iyhstb2hg7yiwjrksexljoz4p5pti7sq"
 
 ## VCN

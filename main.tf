@@ -84,7 +84,7 @@ resource "oci_core_route_table" "route_table_dev_public" {
          #Required
          network_entity_id = oci_core_internet_gateway.internet_gateway.id
          #Optional
-         cidr_block = "0.0.0.0/0"
+         destination = "0.0.0.0/0"
          description = "Routing Rule for Internet access"
          
      }
@@ -169,7 +169,7 @@ resource "oci_core_route_table" "route_table_dev_db_private" {
 	         #Required
 	         network_entity_id = oci_core_nat_gateway.nat_gateway.id
 	         #Optional
-	         cidr_block = "0.0.0.0/0"
+	         destination = "0.0.0.0/0"
 	         description = "Routing Rule for Nat Gateway"
          
 	     }
@@ -294,7 +294,7 @@ resource "oci_core_route_table" "route_table_dev_app_private" {
 	         #Required
 	         network_entity_id = oci_core_nat_gateway.nat_gateway.id
 	         #Optional
-	         cidr_block = "0.0.0.0/0"
+	         destination = "0.0.0.0/0"
 	         description = "Routing Rule for Nat Gateway"
          
 	     }
