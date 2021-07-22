@@ -1,4 +1,4 @@
-# Deploy a Serverless Datalake on OCI uaing Terraform
+# Deploy a Serverless Datalake on OCI using Terraform
 
 Make sure your credentials are defined in $HOME/.oci/config file. As Terraform takes takes the default value from the .oci/config file
 
