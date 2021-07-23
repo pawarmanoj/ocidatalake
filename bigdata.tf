@@ -33,12 +33,12 @@ resource "oci_bds_bds_instance" "datalake_bds_instance" {
     number_of_nodes          = 3
   }
 
-  #   cloud_sql_details {
-  #     shape                    = "VM.Standard2.4"
-  #     block_volume_size_in_gbs = 1000
-  #   }
+     cloud_sql_details {
+       shape                    = "VM.Standard2.4"
+       block_volume_size_in_gbs = 1000
+     }
 
-  is_cloud_sql_configured = false
+  is_cloud_sql_configured = true
   freeform_tags = var.bds_instance_freeform_tags
   network_config {
     #Optional

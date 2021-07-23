@@ -268,7 +268,7 @@ variable "bds_instance_is_secure" {
 }
 
 variable "bds_instance_network_config_cidr_block" {
-  default = "111.112.0.0/16"
+  default = "192.168.0.0/16"
 }
 
 variable "bds_instance_network_config_is_nat_gateway_required" {

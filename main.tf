@@ -770,5 +770,4 @@ data "oci_core_services" "APP_datalake_bastion_services" {
      vcn_id = local.Project_vcn_id
  }
 
- 
- 
+
