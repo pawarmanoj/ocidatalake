@@ -250,7 +250,7 @@ variable "bds_instance_defined_tags_value" {
 }
 
 variable "bds_instance_display_name" {
-  default = "displayName2"
+  default = "BigData"
 }
 
 variable "bds_instance_freeform_tags" {
