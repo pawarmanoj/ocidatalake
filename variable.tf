@@ -37,7 +37,7 @@ variable "availability_domain" {
 
 variable "compartment_network_ocid" {
   type        = string
-  description = "provide value of compartment id for preProduction"
+  description = "provide value of compartment id where you will deploy the stack"
   default = ""
 }
 
@@ -46,13 +46,13 @@ variable "compartment_network_ocid" {
 variable "vcn_cidr" {
   type        = string
   description = "provide value of vcn cidr"
-  default = ""
+  default = "10.10.0.0/16"
 }
 
 variable "vcn_dns_prefix" {
   type        = string
   description = "provide value of vcn Dns Prefix"
-  default = ""
+  default = "datalake"
 }
 
 ## Subnet
@@ -60,19 +60,19 @@ variable "vcn_dns_prefix" {
 variable "subnet_dev_pub_cidr" {
   type        = string
   description = "provide value of public subnet cidr"
-  default = ""
+  default = "10.10.1.0/24"
 }
 
 variable "subnet_dev_pvt_db_cidr" {
   type        = string
   description = "provide value of private subnet cidr"
-  default = ""
+  default = "10.10.2.0/24"
 }
 
 variable "subnet_dev_pvt_app_cidr" {
   type        = string
   description = "provide value of private subnet cidr"
-  default = ""
+  default = "10.10.3.0/24"
 }
 
 ## Database
@@ -80,7 +80,7 @@ variable "subnet_dev_pvt_app_cidr" {
 variable "database_admin_password" {
   type        = string
   description = "provide value of Database Password"
-  default = ""
+  default = "RAbbithole1234#_"
 }
 
 variable "database_db_unique_name" {
@@ -92,37 +92,37 @@ variable "database_db_unique_name" {
 variable "database_db_workload" {
   type        = string
   description = "provide value of Database workload"
-  default = ""
+  default = "OLTP"
 }
 
 variable "database_pdb_name" {
   type        = string
   description = "provide value of Database PDB Name"
-  default = ""
+  default = "PDB1"
 }
 
 variable "database_version" {
   type        = string
   description = "provide value of Database Version"
-  default = ""
+  default = "19.11.0.0"
 }
 
 variable "database_shape" {
   type        = string
   description = "provide value of Database Shape"
-  default = ""
+  default = "VM.Standard2.1"
 }
 
 variable "database_shape_prod" {
   type        = string
   description = "provide value of Database Shape for Production DB"
-  default = ""
+  default = "VM.Standard2.2"
 }
 
 variable "database_storage" {
   type        = string
   description = "provide value of Database Storage"
-  default = ""
+  default = "256"
 }
 
 
@@ -137,13 +137,13 @@ variable "database_storage_management" {
 variable "database_storage_prod" {
   type        = string
   description = "provide value of Database Storage for Production DB"
-  default = ""
+  default = "1024"
 }
 
 variable "database_edition" {
   type        = string
   description = "provide value of Database Edition"
-  default = ""
+  default = "ENTERPRISE_EDITION"
 }
 
 variable "database_ssh_pub_key" {
@@ -155,7 +155,7 @@ variable "database_ssh_pub_key" {
 variable "database_nodecount" {
   type        = string
   description = "provide value of Database Node Count"
-  default = ""
+  default = "1"
 }
 
 ## OAC
@@ -163,36 +163,37 @@ variable "database_nodecount" {
 variable "oac_capacity_type" {
   type        = string
   description = "provide value of OAC Capacity Type"
-  default = ""
+  default = "OLPU_COUNT"
 }
 
 variable "oac_capacity_value" {
   type        = string
   description = "provide value of OAC Capacity Value"
-  default = ""
+  default = "1"
 }
 
 variable "oac_capacity_value_prod" {
   type        = string
   description = "provide value of OAC Capacity Value for Production"
-  default = ""
+  default = "2"
 }
 
 variable "oac_feature_set" {
   type        = string
   description = "provide value of OAC Feature set"
-  default = ""
+  default = "ENTERPRISE_ANALYTICS"
 }
 
 variable "oac_license_type" {
   type        = string
   description = "provide value of OAC Licence Type"
+  default = "LICENSE_INCLUDED"
 }
 
 variable "oac_idcs_token" {
   type        = string
   description = "provide value of OAC IDCS Token"
-  default = "eyJ4NXQjUzI1NiI6IjJ5NERKRU1LTWk5V2JoOFF2VFV1cGgtdUIzNF81eDcweXp3dXFiSGpYRjQiLCJ4NXQiOiIwSkI1QzZiMWpnN251eUJmVW5vWFQ4WnUxNnMiLCJraWQiOiJTSUdOSU5HX0tFWSIsImFsZyI6IlJTMjU2In0.eyJ1c2VyX3R6IjoiQW1lcmljYVwvQ2hpY2FnbyIsInN1YiI6InNoYWRhYi5tb2hhbW1hZEBvcmFjbGUuY29tIiwidXNlcl9sb2NhbGUiOiJlbiIsImlkcF9uYW1lIjoiVXNlck5hbWVQYXNzd29yZCIsInVzZXIudGVuYW50Lm5hbWUiOiJpZGNzLTlhOGU4MTcyNDg3YTQ4ODE5MjM4MzA5NDE5MGVjMDRjIiwib25CZWhhbGZPZlVzZXIiOnRydWUsImlkcF9ndWlkIjoiVXNlck5hbWVQYXNzd29yZCIsImFtciI6WyJVU0VSTkFNRV9QQVNTV09SRCJdLCJpc3MiOiJodHRwczpcL1wvaWRlbnRpdHkub3JhY2xlY2xvdWQuY29tXC8iLCJ1c2VyX3RlbmFudG5hbWUiOiJpZGNzLTlhOGU4MTcyNDg3YTQ4ODE5MjM4MzA5NDE5MGVjMDRjIiwiY2xpZW50X2lkIjoidG9rZW5HZW5lcmF0b3IiLCJ1c2VyX2lzQWRtaW4iOnRydWUsInN1Yl90eXBlIjoidXNlciIsInNjb3BlIjoidXJuOm9wYzppZG06Zy5pZGVudGl0eXNvdXJjZXRlbXBsYXRlX3IgdXJuOm9wYzppZG06dC5ncm91cHMubWVtYmVyc19yIHVybjpvcGM6aWRtOnQuZ3JvdXBzLm1lbWJlcnMgdXJuOm9wYzppZG06dC5hcHAgdXJuOm9wYzppZG06dC51c2VyLmxvY2tlZHN0YXRlY2hhbmdlciB1cm46b3BjOmlkbTp0LnJhZGl1c3Byb3h5X3IgdXJuOm9wYzppZG06dC5pZGJyaWRnZS5hZG1pbiB1cm46b3BjOmlkbTp0LnRlcm1zb2Z1c2UgdXJuOm9wYzppZG06dC51c2VyLnNlY3JldGtleSB1cm46b3BjOmlkbTp0LmlkY3NycHRzIHVybjpvcGM6aWRtOnQucmVxdWVzdHMgdXJuOm9wYzppZG06dC51c2VyLm1hbmFnZXIgdXJuOm9wYzppZG06dC5kcmcgdXJuOm9wYzppZG06dC5zZXNzaW9uIHVybjpvcGM6aWRtOnQuaGVscGRlc2suc2VjdXJpdHkgdXJuOm9wYzppZG06dC5zZWN1cml0eS5jbGllbnQgdXJuOm9wYzppZG06Zy5hcHB0ZW1wbGF0ZV9yIHVybjpvcGM6aWRtOnQuYnVsay51c2VyIHVybjpvcGM6aWRtOnQuZGlhZ25vc3RpY3NfciB1cm46b3BjOmlkbTp0LmlkYl9jb250YWluZXJzIHVybjpvcGM6aWRtOnQuaWRicmlkZ2UudXNlciB1cm46b3BjOmlkbTp0LnJhZGl1c3Byb3h5IHVybjpvcGM6aWRtOnQudXNlci5tZSB1cm46b3BjOmlkbTpnLmFsbF9yIHVybjpvcGM6aWRtOnQuaWRicmlkZ2VfciB1cm46b3BjOmlkbTp0Lm1mYV9yIHVybjpvcGM6aWRtOnQudXNlci5zZWN1cml0eSB1cm46b3BjOmlkbTp0Lmdyb3Vwc19yIHVybjpvcGM6aWRtOnQuYXVkaXRfciB1cm46b3BjOmlkbTp0LmpvYi5hcHAgdXJuOm9wYzppZG06dC51c2Vyc19yIHVybjpvcGM6aWRtOnQuc29taSB1cm46b3BjOmlkbTpnLnNoYXJlZGZpbGVzIHVybjpvcGM6aWRtOnQudXNlci5kYmNyZWRlbnRpYWwgdXJuOm9wYzppZG06dC5oZWxwZGVzay51c2VyIHVybjpvcGM6aWRtOnQucmVzLmltcG9ydGV4cG9ydCB1cm46b3BjOmlkbTp0LmpvYi5pZGVudGl0eSB1cm46b3BjOmlkbTp0LmN1c3RvbWNsYWltcyB1cm46b3BjOmlkbTp0LnNhbWwgdXJuOm9wYzppZG06dC5tZmEgdXJuOm9wYzppZG06dC5kYi5hZG1pbiB1cm46b3BjOmlkbTp0LnVzZXIuYXBpa2V5IHVybjpvcGM6aWRtOnQuc2NoZW1hcyB1cm46b3BjOmlkbTp0Lm1mYS51c2VyYWRtaW4gdXJuOm9wYzppZG06dC51c2VyLm1hbmFnZXIuam9iIHVybjpvcGM6aWRtOnQuY2xvdWRnYXRlX3IgdXJuOm9wYzppZG06dC5vYXV0aCB1cm46b3BjOmlkbTp0Lmdyb3VwcyB1cm46b3BjOmlkbTp0LmpvYi5pbXBvcnRleHBvcnQgdXJuOm9wYzppZG06dC5pZGJyaWRnZS51bm1hcHBlZC5pZGNzYXR0cmlidXRlcyB1cm46b3BjOmlkbTp0LmtyYi5hZG1pbiB1cm46b3BjOmlkbTp0Lm5hbWVkYXBwYWRtaW4gdXJuOm9wYzppZG06dC5ibGtycHRzIHVybjpvcGM6aWRtOnQuc2VsZnJlZ2lzdHJhdGlvbnByb2ZpbGUgdXJuOm9wYzppZG06dC5ncmFudHMgdXJuOm9wYzppZG06dC51c2VyLmF1dGhlbnRpY2F0ZSB1cm46b3BjOmlkbTp0Lm9hdXRodG9rZW4gdXJuOm9wYzppZG06dC5hdXRoZW50aWNhdGlvbiB1cm46b3BjOmlkbTp0LmNvbnRhaW5lciB1cm46b3BjOmlkbTp0LmltYWdlcyB1cm46b3BjOmlkbTp0LmJ1bGsgdXJuOm9wYzppZG06dC51c2VyLm9hdXRoMmNsaWVudGNyZWQgdXJuOm9wYzppZG06dC5kZWxlZ2F0ZWQuZ3JvdXAubWVtYmVycyB1cm46b3BjOmlkbTp0LmpvYi5zZWFyY2ggdXJuOm9wYzppZG06dC5pZGJyaWRnZSB1cm46b3BjOmlkbTp0LnVzZXIuZGJsb2dpbnVwZGF0ZXIgdXJuOm9wYzppZG06dC51c2VyLmF1dGh0b2tlbiB1cm46b3BjOmlkbTp0LnVzZXIuc210cGNyZWRlbnRpYWwgdXJuOm9wYzppZG06dC5zZXR0aW5ncyB1cm46b3BjOmlkbTp0LnVzZXIubWFuYWdlci5zZWN1cml0eSB1cm46b3BjOmlkbTp0LmZpbGVzIHVybjpvcGM6aWRtOnQuY2xvdWRnYXRlIHVybjpvcGM6aWRtOnQuaWRicmlkZ2Uuc291cmNlZXZlbnQgdXJuOm9wYzppZG06dC51c2VyLmNhcGFiaWxpdGllc191IHVybjpvcGM6aWRtOnQuaWRiX2NvbnRhaW5lcnNfciB1cm46b3BjOmlkbTp0LnBvbGljeSB1cm46b3BjOmlkbTp0LnVzZXJzIHVybjpvcGM6aWRtOnQucmVwb3J0cyB1cm46b3BjOmlkbTp0LnVzZXIuc3VwcG9ydGFjY291bnQgdXJuOm9wYzppZG06dC5zZXNzaW9uLnJldm9rZSB1cm46b3BjOmlkbTpnLmlkY3NycHRzbWV0YV9yIHVybjpvcGM6aWRtOnQuYWRhcHRpdmVfciIsImNsaWVudF90ZW5hbnRuYW1lIjoiaWRjcy1vcmFjbGUiLCJ1c2VyX2xhbmciOiJlbiIsInVzZXJBcHBSb2xlcyI6WyJVc2VyIEFkbWluaXN0cmF0b3IiLCJBdXRoZW50aWNhdGVkIiwiR2xvYmFsIFZpZXdlciIsIklkZW50aXR5IERvbWFpbiBBZG1pbmlzdHJhdG9yIiwiQXVkaXQgQWRtaW5pc3RyYXRvciIsIkFwcGxpY2F0aW9uIEFkbWluaXN0cmF0b3IiLCJTZWN1cml0eSBBZG1pbmlzdHJhdG9yIl0sImV4cCI6MTYyNjY1OTg3MiwiaWF0IjoxNjI2NjU5NjkyLCJjbGllbnRfZ3VpZCI6IjczYjliYWNmY2U2MDQ0NzU5OWNlZmE4ZmY2YjA5ODc3IiwiY2xpZW50X25hbWUiOiJ0b2tlbkdlbmVyYXRvciIsImlkcF90eXBlIjoiTE9DQUwiLCJ0ZW5hbnQiOiJpZGNzLTlhOGU4MTcyNDg3YTQ4ODE5MjM4MzA5NDE5MGVjMDRjIiwianRpIjoiMTFlYmU4MzQ0ZWU5NTUzOGJhNTZlZDJjMjQ4ZTAyNWUiLCJndHAiOiJqd3QiLCJ1c2VyX2Rpc3BsYXluYW1lIjoic2hhZGFiIG1vaGFtbWFkIiwic3ViX21hcHBpbmdhdHRyIjoidXNlck5hbWUiLCJwcmltVGVuYW50Ijp0cnVlLCJ0b2tfdHlwZSI6IkFUIiwiY2FfZ3VpZCI6ImNhY2N0LWM5N2RmODNlYTFkMDRmY2U4ZjhjMGFlOTgyNDdmODc3IiwiYXVkIjpbInVybjpvcGM6bGJhYXM6bG9naWNhbGd1aWQ9aWRjcy05YThlODE3MjQ4N2E0ODgxOTIzODMwOTQxOTBlYzA0YyIsImh0dHBzOlwvXC9pZGNzLTlhOGU4MTcyNDg3YTQ4ODE5MjM4MzA5NDE5MGVjMDRjLnVzLXBob2VuaXgtaWRjcy0xLnNlY3VyZS5pZGVudGl0eS5vcmFjbGVjbG91ZC5jb20iLCJodHRwczpcL1wvaWRjcy05YThlODE3MjQ4N2E0ODgxOTIzODMwOTQxOTBlYzA0Yy5pZGVudGl0eS5vcmFjbGVjbG91ZC5jb20iXSwidXNlcl9pZCI6IjI5MDM5NDZmMTA2YzQxZTZiNzNmOWM1OTk4NTY1MTIyIiwiY2xpZW50QXBwUm9sZXMiOlsiQXV0aGVudGljYXRlZCBDbGllbnQiLCJDcm9zcyBUZW5hbnQiXSwidGVuYW50X2lzcyI6Imh0dHBzOlwvXC9pZGNzLTlhOGU4MTcyNDg3YTQ4ODE5MjM4MzA5NDE5MGVjMDRjLmlkZW50aXR5Lm9yYWNsZWNsb3VkLmNvbTo0NDMifQ.VVeEph3kYmvCUUHmwrTCB_zksLpvff4p_to7AVyKb5CdqjhH49JZBd7kCEcCu-MQoLVJOWtIXNVb8N7p1rHfPpOFD9fJagefDxkiFz0VCjsw-gMbsGr_-vvzNZpdmu9hG7eQiTJniWDHimOSRYh782vG9JVsi6zT-mxIUTfO3lFgX6N9pVbUiadXlTlNkkZbL7wHCBq-Ou2N1pzSB75c2YSEoou7EoQ4Ev4_bPIcZIZpQvxpcoMqzQUydmFLfy6OafN7DdRVT70z835Pf_xPH_mNYYmnfj32JvJxtswFxmlhwrxEaDAZc7seVMdGKIR_9I7NdQTEjFOeDAd3jMHHiQ"
+  default = ""
 }
 
 #PAC
@@ -200,11 +201,11 @@ variable "oac_idcs_token" {
 variable "oac_pac_domain_suffix" {
   type        = string
   description = "provide Suffix of OAC PAC Domain Name"
-  default = ""
+  default = "oraclevcn.com"
 }
 
 ## Bastion VM
-
+/*
 variable "bastion_image_id" {
   type        = string
   description = "provide value of Bastion Image ID"
@@ -215,6 +216,7 @@ variable "bastion_ssh_pub_key" {
   description = "provide value of Bastion SSH Public Key"
   default = ""
 }
+
 
 #VM Hosts
 
@@ -230,6 +232,9 @@ variable "etlssh_pub_key" {
   default = ""
   description = "provide value of ETL VM host SSH Public Key"
 }
+
+*/
+
 
 ## Big Data
 
