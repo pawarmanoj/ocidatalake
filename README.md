@@ -6,6 +6,8 @@
 
 [![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/shadabshaukat/ocidatalake/blob/main/masterdlv1.zip)
 
+If you run into an error "You selected a file that is not a .zip file or that is password-protected" Please download the source zip file from here https://github.com/shadabshaukat/ocidatalake/blob/main/masterdlv1.zip and import it into Oracle Resource Manager > Create Stack > Import .zip file
+
 ### or
 
 ## Deploy from Client Machine
