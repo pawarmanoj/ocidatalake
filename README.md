@@ -8,6 +8,10 @@
 
 If you run into an error "You selected a file that is not a .zip file or that is password-protected" Please download the source zip file from here https://github.com/shadabshaukat/ocidatalake/blob/main/masterdlv1.zip and import it into Oracle Resource Manager > Create Stack > Import .zip file
 
+<img width="1200" alt="Screen Shot 2021-07-30 at 3 42 03 pm" src="https://user-images.githubusercontent.com/39692236/127606301-4a6e6eb3-642e-470c-bbfb-d66353a189bc.png">
+
+
+
 ### or
 
 ## Deploy from Client Machine
