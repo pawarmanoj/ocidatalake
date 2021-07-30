@@ -1,6 +1,6 @@
 # Deploy a Serverless Datalake on OCI using Terraform
 
-![OCI Data Lake v2](https://user-images.githubusercontent.com/39692236/126593840-a70fd155-96cf-4c4b-8ae5-392f67703f7e.png)
+![OCI Data Lake v2](https://user-images.githubusercontent.com/39692236/127611829-6200b4ff-93a2-4481-9331-b237844018b1.png)
 
 ## Single Click Deploy to OCI
 
