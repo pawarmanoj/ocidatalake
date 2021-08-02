@@ -4,7 +4,7 @@
 
 ## Single Click Deploy to OCI
 
-[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/shadabshaukat/ocidatalake/blob/7acf7ec9b0f11c5385b73b637ded056d7900453a/masterdlv1.zip)
+[![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/shadabshaukat/ocidatalake/raw/main/masterdlv1.zip)
 
 If you run into an error "You selected a file that is not a .zip file or that is password-protected" Please download the source zip file from here https://github.com/shadabshaukat/ocidatalake/blob/main/masterdlv1.zip and import it into Oracle Resource Manager > Create Stack > Import .zip file
 
