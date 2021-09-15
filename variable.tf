@@ -3,7 +3,7 @@
 variable "Resource_prefix" {
   type        = string
   description = "provide value of Resource Prefix like customer name."
-  default = "XYZ"
+  default = "OCIDataLake-4"
 }
 
 variable "Resource_suffix_dev" {
@@ -23,7 +23,7 @@ variable "Resource_main" {
 variable "region" {
   type        = string
   description = "provide value of region"
-  default = ""
+  default = "us-ashburn-1"
 }
 
 variable "availability_domain" {
@@ -38,7 +38,7 @@ variable "availability_domain" {
 variable "compartment_network_ocid" {
   type        = string
   description = "provide value of compartment id where you will deploy the stack"
-  default = ""
+  default = "ocid1.tenancy.oc1..aaaaaaaa6jrl6kuznr6he3ujp3wk22gpvr6n225uba6tu6anu6iurduhu5ta"
 }
 
 ## VCN Variables
@@ -314,7 +314,7 @@ variable "bastion_bastion_lifecycle_state" {
 }
 
 variable "bastion_client_cidr_block_allow_list" {
-  default = ["0.0.0.0/0"]
+  default = "0.0.0.0/0"
 }
 
 variable "bastion_name" {
