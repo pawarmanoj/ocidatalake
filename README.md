@@ -6,7 +6,7 @@
 
 [![Deploy to Oracle Cloud](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://github.com/pawarmanoj/ocidatalake/raw/main/masterdlv1.zip)
 
-If you run into an error "You selected a file that is not a .zip file or that is password-protected" Please download the source zip file from here https://github.com/shadabshaukat/ocidatalake/blob/main/masterdlv1.zip and import it into Oracle Resource Manager > Create Stack > Import .zip file
+If you run into an error "You selected a file that is not a .zip file or that is password-protected" Please download the source zip file from here https://github.com/pawarmanoj/ocidatalake/blob/main/masterdlv1.zip and import it into Oracle Resource Manager > Create Stack > Import .zip file
 
 <img width="1200" alt="Screen Shot 2021-07-30 at 3 42 03 pm" src="https://user-images.githubusercontent.com/39692236/127606301-4a6e6eb3-642e-470c-bbfb-d66353a189bc.png">
 
@@ -28,7 +28,8 @@ compartment=ocid1.compartment.oc1..aaaa5pti7sq\
 region=us-ashburn-1
 
 # Clone the OCI Datalake Repo
-$ git clone https://github.com/shadabshaukat/ocidatalake.git && cd ocidatalake
+$ git clone https://github.com/pawarmanoj/ocidatalake.git 
+$ cd ocidatalake
 
 # Initialize Terraform for OCI and Random Provider
 $ terraform init
